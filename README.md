@@ -4,7 +4,7 @@ Frontend for the Gelato Automation Engine
 
 **Milestones**
 
-1) users can log in via metamask
+1) users can log in via metamask &#9989
 2) users can input an address of a contract they want to call
 3) user can input the abi of the contract they want to call
 4) UI generates inputs for all of the contracts functions, similar to etherscan. 
