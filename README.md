@@ -1,4 +1,4 @@
- **<h2 style="color:pink;">Icecream Truck</h2>**
+ **Icecream Truck**
 
 **Milestones**
 
