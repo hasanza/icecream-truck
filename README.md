@@ -11,3 +11,7 @@ Frontend for the Gelato Automation Engine
 5) user can deposit some eth on Gelato and can create An account 
 6) now user can define what function to call every couple of minutes / hours by submitting a task to the gelato smart contracts 
 7) gelato handles the rest.
+
+**Instructions**
+
+npm start in the repository 
