@@ -1,4 +1,5 @@
-#Icecream Truck
+# Icecream Truck
+
 Frontend for the Gelato Automation Engine
 
 **Milestones**
