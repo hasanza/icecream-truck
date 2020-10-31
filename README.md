@@ -1,4 +1,5 @@
- **Icecream Truck**
+<h1>Icecream Truck<h1>
+  <p>Frontend for the Gelato Automation Engine</p>
 
 **Milestones**
 
