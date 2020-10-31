@@ -1,0 +1,38 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: fit-content;
+    border-bottom: 1px solid black;
+    padding: 0 5% 0 5%;
+}
+
+.logo {
+    background-color: pink;
+    border: 3px black solid;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.connected {
+        height: 12px;
+        width: 12px;
+        border: 0.5px solid darkgreen;
+        background-color: rgb(38, 250, 31);
+        border-radius: 50%;
+        display: inline-block;
+}
+
+.btn {
+    border: 2px solid black;
+    background-color: pink;
+    border-radius: 3px;
+    color: black;
+    border-radius: 3px;
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
