@@ -1,4 +1,4 @@
-<h3>Icecream Truck<h3>
+#Icecream Truck
 Frontend for the Gelato Automation Engine
 
 **Milestones**
