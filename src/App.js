@@ -36,7 +36,7 @@ function App() {
   };
 
   if (account === "") {
-    return <Connect />;
+    return <Connect loadBlockchain={loadBlockchain} />;
   }
   if(contract !== "" && abi[0]) {
     return (
