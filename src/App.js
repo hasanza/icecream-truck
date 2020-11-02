@@ -35,7 +35,7 @@ function App() {
     //setConnected(true);
   };
 
-  if (account == "") {
+  if (account === "") {
     return <Connect />;
   }
   if(contract !== "" && abi[0]) {
