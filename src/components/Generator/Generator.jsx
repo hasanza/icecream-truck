@@ -17,6 +17,7 @@ function Generator({setContract, setAbi}) {
     const handleSubmit = () => {
         setContract(addressInput);
         setAbi(abiInput);
+        console.log('the ABI input in the generator is:', abiInput);
     }
 
     return (

@@ -6,9 +6,9 @@ import { Connect, Nav, Generator, Generated } from "./components";
 function App() {
   const [signer, setSigner] = useState({});
   const [account, setAccount] = useState("");
-  const [connected, setConnected] = useState(false);
+  //const [connected, setConnected] = useState(false);
   const [contract, setContract] = useState("");
-  const [abi, setAbi] = useState([]);
+  const [abi, setAbi] = useState('');
 
   useEffect(() => {
     //add the listener here...
@@ -32,7 +32,7 @@ function App() {
     setSigner(thisSigner);
     console.log("connected to Ethereum via Metamask");
     console.log("The signer object is: ", signer);
-    setConnected(true);
+    //setConnected(true);
   };
 
   if (account == "") {
