@@ -42,7 +42,7 @@ function App() {
     return (
       <>
       <Nav account={account} loadBlockchain={loadBlockchain} />
-      <Generated/>
+      <Generated abi={abi}/>
       </>
     ) 
   }

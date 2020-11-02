@@ -1,12 +1,15 @@
 .form {
-    width: 33%;
+    width: 35%;
     height: fit-content;
-    margin: 0 auto;
+    margin: 3% auto;
     padding: 3%;
     display: flex;
     justify-content: center;
     align-items: left;
     flex-direction: column;
+    border: 3px black solid;
+    background-color: pink;
+    border-radius: 5px;
 }
 
 form * {
