@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
-import {Connect, Nav} from './components';
+import { Connect, Nav, Generator, Generated } from "./components";
 
 function App() {
   const [signer, setSigner] = useState({});
@@ -35,14 +35,23 @@ function App() {
     setConnected(true);
   };
 
-  if(account=="") {
+  if (account == "") {
+    return <Connect />;
+  }
+  if(contract !== "" && abi[0]) {
     return (
-      <Connect/>
-    )
+      <>
+      <Nav account={account} loadBlockchain={loadBlockchain} />
+      <Generated/>
+      </>
+    ) 
   }
 
   return (
-    <Nav account={account} loadBlockchain={loadBlockchain}/>
+    <>
+      <Nav account={account} loadBlockchain={loadBlockchain} />
+      <Generator setAbi={setAbi} setContract={setContract} />
+    </>
   );
 }
 export default App;
