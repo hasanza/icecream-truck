@@ -35,6 +35,11 @@ function App() {
     //setConnected(true);
   };
 
+  const newContract = () => {
+    setContract('');
+    setAbi([]);
+  }
+
   if (account === "") {
     return <Connect loadBlockchain={loadBlockchain} />;
   }
@@ -42,7 +47,7 @@ function App() {
     return (
       <>
       <Nav account={account} loadBlockchain={loadBlockchain} />
-      <Generated abi={abi}/>
+      <Generated newContract={newContract} contract = {contract} abi={abi}/>
       </>
     ) 
   }
