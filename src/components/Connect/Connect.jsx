@@ -1,12 +1,18 @@
 import React from "react";
 import styles from "./Connect.module.css";
+import { Card, CardContent, Button } from "@material-ui/core";
 
-function Connect({loadBlockchain}) {
+function Connect({ loadBlockchain }) {
   return (
-    <div className={styles.connect}>
+    <Card id={styles.myCard}>
+      <CardContent>
       <h2>Please connect MetaMask to continue</h2>
-      <div onClick={loadBlockchain} className={styles.btn}>Connect</div>
-    </div>
+      <Button id={styles.btn} onClick={loadBlockchain} color="primary" variant="contained" size="large">
+        Connect
+      </Button>
+      </CardContent>
+      
+    </Card>
   );
 }
 

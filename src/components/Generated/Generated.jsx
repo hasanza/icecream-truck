@@ -1,19 +1,31 @@
 import React from "react";
 import styles from "./Generated.module.css";
+import { Formik, Form, Field} from "formik";
+import * as Yup from "yup";
+import {
+  Box,
+  Card,
+  CardContent,
+  Button,
+  CircularProgress,
+  Grid,
+  CardHeader
+} from "@material-ui/core";
 
-function Generated({newContract, contract, abi }) {
+function Generated({contract, abi }) {
   //parse the ABI and generate a form based on that
   //parse abi and create a JSON that can be fed to a library
   const thisAbi = JSON.parse(abi);
 
   return (
-    <div className={styles.form}>
-      <h4 className={styles.contract}>{contract}</h4>
+    <Card id={styles.myCard}>
+      <CardContent>
+      <CardHeader subheader="current contract" id={styles.myContract} title={contract}/>
       {console.log(abi)}
       {thisAbi.map(
         (f) =>
           (f.inputs.length > 0 && f.type === "function") && (
-            <div className={styles.function}>
+            <CardContent>
               <label className={styles.funcLabel} htmlFor={f.name}>
                 {f.name}
               </label>
@@ -32,11 +44,11 @@ function Generated({newContract, contract, abi }) {
                   )}
                 </div>
               ))}
-            </div>
+            </CardContent>
           )
       )}
-      <div onClick={newContract} className={styles.btn}>New Contract</div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
 

@@ -1,36 +1,27 @@
-.form {
-    width: 33%;
-    height: fit-content;
-    margin: 0 auto;
-    padding: 3%;
-    display: flex;
-    justify-content: center;
-    align-items: left;
-    flex-direction: column;
-}
-
 .myCard {
     margin: 5% 10% 5% 10%;
   }
 
-form * {
-    margin-top: 20px;
-    width: 100%;
-}
-
-.btn {
-    border: 2px solid black;
+  #btn {
     background-color: pink;
     border-radius: 3px;
     color: black;
     border-radius: 5px;
     width: fit-content;
     height: fit-content;
-    padding: 5px;
+    padding: 5px 10px;
     cursor: pointer;
+    vertical-align: middle;
+  }
+  
+  #btn:hover {
+    background-color: black;
+    color: pink;
   }
 
-  .btn:hover {
-      background-color: black;
-      color: pink;
+  #spinner {
+      color: black;
   }
+  
+
+

@@ -1,91 +1,102 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Generator.module.css";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field} from "formik";
 import * as Yup from "yup";
+import {Generated} from '../';
 import {
   Box,
   Card,
   CardContent,
   Button,
   CircularProgress,
-  TextField,
+  Grid
 } from "@material-ui/core";
+import {TextField} from 'formik-material-ui';
 
-function Generator({ setContract, setAbi }) {
-  //input contract address and abi
+const sleep = (time) => new Promise(acc => setTimeout(acc, time));
+
+function Generator({contract, abi, setContract, setAbi, setVal }) {
+
+  const[submitted, setSubmitted] = useState(false);
 
   const initialValues = {
-    abi: [],
     contract: "",
-  };
-
-  const handleSubmit = (values) => {
-    //pass field values to setContract and setAbi functions
-    console.log(values);
-    setContract(values.contract);
-    setAbi(values.abi);
+    abi: [],
   };
 
   const validationSchema = Yup.object({
-    abi: Yup.array().required("Contract ABI is needed").nullable(),
     contract: Yup.string()
-      .required("Contract address is needed")
-      .min(42, "Address must be exactly 42 characters long")
-      .max(42, "Address must be exactly 42 characters long"),
+      .required("contract address is required")
+      .min(42, "contract address must be exactly 42 characters long")
+      .max(42, "contract address must be exactly 42 characters long"),
+    abi: Yup.array().min(1, "contract ABI is required"),
   });
 
-  return (
-    <div>
-      <Card className={styles.myCard}>
-        <CardContent>
-          <Formik
-            label="Contract Details"
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={handleSubmit}
-          >
-            {(formik) => (
-              <Form onSubmit={formik.onSubmit}>
-                <Box paddingBottom={2}>
-                  <Field
-                    as={TextField}
+  const handleFormikSubmit = async (values, actions) => {
+    await sleep(3000);
+    console.log(values);
+    setContract(values.contract);
+    setAbi(values.abi);
+    setSubmitted(true);
+  };
+
+  if(!submitted) {
+    return (
+      <div>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleFormikSubmit}
+        >
+          {(props) => (
+            <Card className={styles.myCard}>
+              <CardContent>
+                <Form>
+                  <Box paddingBottom={2}>
+                    <Field
                     fullWidth
-                    name="contract"
-                    label="Contract Address"
-                  />
-                  <br />
-                  <ErrorMessage
-                    name="contract"
-                    render={(msg) => (
-                      <span style={{ color: "red" }}>{msg}</span>
-                    )}
-                  />
-                </Box>
-                <Box paddingBottom={2}>
-                  <Field
-                    as={TextField}
+                      label="Contract Address"
+                      type="text"
+                      name="contract"
+                      component={TextField}
+                    />
+                  </Box>
+                  <Box paddingBottom={2}>
+                    <Field
                     fullWidth
-                    name="abi"
-                    label="Contract ABI"
-                  />
-                  <br />
-                  <ErrorMessage
-                    name="abi"
-                    render={(msg) => (
-                      <span style={{ color: "red" }}>{msg}</span>
-                    )}
-                  />
-                </Box>
-                <Button variant="contained" color="primary" type="submit">
-                  Generate Form
-                </Button>
-              </Form>
-            )}
-          </Formik>
-        </CardContent>
-      </Card>
-    </div>
-  );
+                      label="Contract ABI"
+                      type="text"
+                      name="abi"
+                      component={TextField}
+                    />
+                  </Box>
+                  <Grid container spacing={2}>
+                    
+                      <Grid item>
+                        <Button
+                        id={styles.btn}
+                        startIcon={
+                          props.isSubmitting ? <CircularProgress id={styles.spinner} size="1rem" /> : null
+                        }
+                          variant="contained"
+                          color="primary"
+                          type="submit"
+                        >
+                          {props.isSubmitting ? "Generating Form" : "Generate Form"}
+                        </Button>
+                      </Grid>
+                  </Grid>
+                </Form>
+              </CardContent>
+            </Card>
+          )}
+        </Formik>
+      </div>
+    );
+  } 
+  else {
+    return <Generated contract = {contract} abi={abi} setVal={setVal}/>
+  }
 }
 
 export default Generator;

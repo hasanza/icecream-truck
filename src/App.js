@@ -3,12 +3,13 @@ import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { Connect, Nav, Generator, Generated } from "./components";
 
+
 function App() {
   const [signer, setSigner] = useState({});
   const [account, setAccount] = useState("");
   //const [connected, setConnected] = useState(false);
   const [contract, setContract] = useState("");
-  const [abi, setAbi] = useState('');
+  const [abi, setAbi] = useState([]);
   //array of function inputs; an object for input values of each function
   //e.g. the input object for transfer would have an address and int, and so on
   const [values, setVal] = useState([]);
@@ -46,20 +47,14 @@ function App() {
   if (account === "") {
     return <Connect loadBlockchain={loadBlockchain} />;
   }
-  if(contract !== "" && abi[0]) {
+  else {
     return (
       <>
-      <Nav account={account} loadBlockchain={loadBlockchain} />
-      <Generated newContract={newContract} contract = {contract} abi={abi} setVal={setVal}/>
+        <Nav account={account} loadBlockchain={loadBlockchain} />
+        <Generator contract = {contract} abi={abi} setVal={setVal} setAbi={setAbi} setContract={setContract} />
       </>
-    ) 
+    );
   }
 
-  return (
-    <>
-      <Nav account={account} loadBlockchain={loadBlockchain} />
-      <Generator setAbi={setAbi} setContract={setContract} />
-    </>
-  );
 }
 export default App;
