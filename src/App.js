@@ -9,6 +9,9 @@ function App() {
   //const [connected, setConnected] = useState(false);
   const [contract, setContract] = useState("");
   const [abi, setAbi] = useState('');
+  //array of function inputs; an object for input values of each function
+  //e.g. the input object for transfer would have an address and int, and so on
+  const [values, setVal] = useState([]);
 
   useEffect(() => {
     //add the listener here...
@@ -47,7 +50,7 @@ function App() {
     return (
       <>
       <Nav account={account} loadBlockchain={loadBlockchain} />
-      <Generated newContract={newContract} contract = {contract} abi={abi}/>
+      <Generated newContract={newContract} contract = {contract} abi={abi} setVal={setVal}/>
       </>
     ) 
   }
