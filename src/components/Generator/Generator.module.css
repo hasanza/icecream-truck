@@ -9,6 +9,10 @@
     flex-direction: column;
 }
 
+.myCard {
+    margin: 5% 10% 5% 10%;
+  }
+
 form * {
     margin-top: 20px;
     width: 100%;

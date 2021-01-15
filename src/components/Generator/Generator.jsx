@@ -1,36 +1,91 @@
-import React, {useState} from 'react';
-import styles from './Generator.module.css';
+import React from "react";
+import styles from "./Generator.module.css";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import {
+  Box,
+  Card,
+  CardContent,
+  Button,
+  CircularProgress,
+  TextField,
+} from "@material-ui/core";
 
-function Generator({setContract, setAbi}) {
-    //input contract address and abi
-    const [addressInput, setAddressInput] = useState('');
-    const [abiInput, setAbiInput] = useState([]);
+function Generator({ setContract, setAbi }) {
+  //input contract address and abi
 
-    const setAddrVal = (e) => {
-        setAddressInput(e.target.value);
-    }
+  const initialValues = {
+    abi: [],
+    contract: "",
+  };
 
-    const setAbiVal = (e) => {
-        setAbiInput(e.target.value);
-    }
+  const handleSubmit = (values) => {
+    //pass field values to setContract and setAbi functions
+    console.log(values);
+    setContract(values.contract);
+    setAbi(values.abi);
+  };
 
-    const handleSubmit = () => {
-        setContract(addressInput);
-        setAbi(abiInput);
-        console.log('the ABI input in the generator is:', abiInput);
-    }
+  const validationSchema = Yup.object({
+    abi: Yup.array().required("Contract ABI is needed").nullable(),
+    contract: Yup.string()
+      .required("Contract address is needed")
+      .min(42, "Address must be exactly 42 characters long")
+      .max(42, "Address must be exactly 42 characters long"),
+  });
 
-    return (
-        <div>
-            <form className={styles.form}>
-                <h3>Contract Address</h3>
-                <input onChange={setAddrVal} name="address" placeholder="0x..." /> <br/>
-                <h3>Contract Abi</h3>
-                <textarea onChange={setAbiVal} name="abi" placeholder="Contract ABI"/>
-                <div onClick={handleSubmit} type="submit" className={styles.btn}>Generate Form</div>
-            </form>
-        </div>
-    )
+  return (
+    <div>
+      <Card className={styles.myCard}>
+        <CardContent>
+          <Formik
+            label="Contract Details"
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+          >
+            {(formik) => (
+              <Form onSubmit={formik.onSubmit}>
+                <Box paddingBottom={2}>
+                  <Field
+                    as={TextField}
+                    fullWidth
+                    name="contract"
+                    label="Contract Address"
+                  />
+                  <br />
+                  <ErrorMessage
+                    name="contract"
+                    render={(msg) => (
+                      <span style={{ color: "red" }}>{msg}</span>
+                    )}
+                  />
+                </Box>
+                <Box paddingBottom={2}>
+                  <Field
+                    as={TextField}
+                    fullWidth
+                    name="abi"
+                    label="Contract ABI"
+                  />
+                  <br />
+                  <ErrorMessage
+                    name="abi"
+                    render={(msg) => (
+                      <span style={{ color: "red" }}>{msg}</span>
+                    )}
+                  />
+                </Box>
+                <Button variant="contained" color="primary" type="submit">
+                  Generate Form
+                </Button>
+              </Form>
+            )}
+          </Formik>
+        </CardContent>
+      </Card>
+    </div>
+  );
 }
 
-export default Generator
+export default Generator;
