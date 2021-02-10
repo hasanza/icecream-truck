@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Generated.module.css";
 import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
+// import * as Yup from "yup";
 import {
   Box,
   Card,
@@ -18,11 +18,11 @@ function Generated({ contract, abi }) {
   const thisAbi = JSON.parse(abi);
 
   //init values for each form; can be address(string), uint(number) or bool
-  const initialValues = {
-    address:'',
-    amount: '',
-    bool: false
-  }
+  // const initialValues = {
+  //   address:'',
+  //   amount: '',
+  //   bool: false
+  // }
 
   return (
     <>
