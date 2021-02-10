@@ -14,27 +14,39 @@
 }
 
 #myCard {
-  margin: 5% auto;
-  width: fit-content;
+  background-color: lightgrey;
+  margin-bottom: 20px;
+  position: relative;
+  margin: 2%;
+}
+
+#container {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin: 2% 3%;
 }
 
 #myContract {
   border-radius: 5px;
 }
 
-.btn {
-  border: 2px solid black;
+#btn {
   background-color: pink;
   border-radius: 3px;
   color: black;
   border-radius: 5px;
   width: fit-content;
   height: fit-content;
-  padding: 5px;
+  padding: 5px 10px;
   cursor: pointer;
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
 }
 
-.btn:hover {
+#btn:hover {
   background-color: black;
   color: pink;
 }
